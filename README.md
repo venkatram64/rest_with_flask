@@ -1,6 +1,28 @@
+creating virtual environment:
+step 1:
+
+pip install virtualenv
+
+step 2:
+
+virtualenv venv --python=python3.6
+
+step 3:
+
+source venv/bin/activate
+
+or 
+
+./venv/Scripts/activate.bat
+
+
+**************************
+
 pip install flask-RESTful
 
 pip install flask-JWT   (JSon Web token)
+
+pip install Flask-SQLAlchemy
 
 pip freeze
 

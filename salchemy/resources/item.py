@@ -1,37 +1,37 @@
 from flask_restful import Resource, reqparse
 from flask_jwt import jwt_required
 from salchemy.models.item import ItemModel
-import sqlite3
 
 class Item(Resource):
 
     parser = reqparse.RequestParser()
-
     parser.add_argument('price',
         type=float,
         required=True,
         help="This field cannot be blank."
     )
 
+    parser.add_argument('store_id',
+        type=int,
+        required=True,
+        help="Every item needs a store id."
+    )
+
     @jwt_required()
     def get(self, name):
-
         item = ItemModel.find_by_name(name)
         if item:
             return item.json()
         else:
             return {'message': 'Item not found'}, 404
 
-
-
     def post(self, name):
-
         row = ItemModel.find_by_name(name)
         if row is not None:
             return {'message': "An item with name '{}' already exists.".format(name)}, 400
         data = Item.parser.parse_args()   #silent=True, or force=True
 
-        item = ItemModel(name, data['price'])
+        item = ItemModel(name, data['price'], data['store_id'])
         try:
             item.save_to_db()
         except:
@@ -49,7 +49,7 @@ class Item(Resource):
         data = Item.parser.parse_args() #request.get_json()
         item = ItemModel.find_by_name(name)
         if item is None:
-            item = ItemModel(name, data['price'])
+            item = ItemModel(name, **data)   #ItemModel(name, data['price'], data['store_id'])
         else:
             item.price = data['price']
 

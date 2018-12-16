@@ -39,7 +39,19 @@ http://localhost:5000/register
 	"password": "venkat"
 }
 
-step 2:
+step 3:
+
+Create a store
+
+localhost:5000/store/Big Bazar
+
+step 4:
+
+Fetch stores along with items
+
+localhost:5000/store/Big Bazar
+
+step 5:
 
 generate JWT token
 http://localhost:5000/auth
@@ -49,7 +61,7 @@ http://localhost:5000/auth
 	"password": "venkat"
 }
 
-step 3:
+step 6:
 
 creating item
 
@@ -59,19 +71,19 @@ http://localhost:5000/item/chair
 	"price": "19.20"
 }
 
-step 4: 
+step 7: 
 get request:
 http://localhost:5000/item/chair
 
-step 5: 
+step 8: 
 get request:
 http://localhost:5000/items
 
-step 5: 
+step 9: 
 delete request:
 http://localhost:5000/item/chair
 
-step 6: 
+step 10: 
 put request:
 http://localhost:5000/item/chair
 
